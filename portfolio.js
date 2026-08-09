@@ -57,6 +57,33 @@ ScrollReveal().reveal('.home-content p, .about-content', { origin: 'right' });
 // const typed = new Typed(Engineer']
 // }
 
+// Contact Form Submission & Reset Logic
+let contactForm = document.getElementById('contact-form');
+
+if (contactForm) {
+    contactForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // Page ko doosri website par jaane se rokta hai
+        
+        let formData = new FormData(this);
+        
+        fetch(this.action, {
+            method: this.method,
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        }).then(response => {
+            if (response.ok) {
+                alert("Thank you! Your message has been sent successfully.");
+                contactForm.reset(); // YEH LINE SAARE BOXES KO RESET (KHALI) KAREGI
+            } else {
+                alert("Oops! There was a problem submitting your form.");
+            }
+        }).catch(error => {
+            alert("Oops! There was a network error. Please try again.");
+        });
+    });
+}
 
 
 
