@@ -2,7 +2,7 @@
 
 Welcome to the repository of my personal portfolio website! This project is a fully responsive, interactive single-page application (SPA) designed to showcase my skills in Full Stack Web Development, Machine Learning, and Software Engineering.
 
-**🔗 Live Demo:** [Click here to view my Portfolio](https://trivediarun446.github.io/Portfolio/) *(Update this link if your repo name is different)*
+**🔗 Live Demo:** [Click here to view my Portfolio](https://trivediarun446.github.io/Portfolio/) *
 
 ---
 
