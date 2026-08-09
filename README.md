@@ -64,10 +64,4 @@ To run this project locally on your machine, follow these simple steps:
 
 ---
 
-## 📫 Let's Connect
 
-Feel free to reach out if you'd like to collaborate on a project, discuss Machine Learning, or just say hi!
-
-*   **LinkedIn:** [Your LinkedIn Link Here]
-*   **GitHub:** [trivediarun446](https://github.com/trivediarun446)
-*   **LeetCode:** [Aruntrivedi446](https://leetcode.com/u/Aruntrivedi446/)
