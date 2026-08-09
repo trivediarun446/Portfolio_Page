@@ -277,21 +277,30 @@ span {
 
 
 @media (max-width: 768px) {
-  .about {
+  /* .about {
     flex-direction: column; /* Stack items vertically on smaller screens */
-    text-align: center; /* Align text centrally on small screens */
-  }
+    /* text-align: center; /* Align text centrally on small screens */
+  
 
-  .about-content {
+  /* .about-content {
     max-width: 100%; /* Allow full width on small screens */
-  }
-  .home{
+  /* } */ 
+  /* .home{
     flex-direction: column;
     text-align: center;
   }
   .home-content{
     max-width: 100%;
-  }
+  }  */
+    .portfolio-container {
+  grid-template-columns: repeat(2, 1fr);
+}
+/* with: */
+.project-container {
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  padding: 0 1rem;
+}
 }
 
 /* CSS for knowladge section   */
@@ -680,13 +689,13 @@ span {
 @media (max-width: 615px) {
   
   .portfolio-container {
-    grid-template-columns: 1fr;
-  }
-  
-  
-  .home-img img {
-    width: 80vw;
-  }
+  grid-template-columns: 1fr;
+}
+/* with: */
+.project-container {
+  grid-template-columns: 1fr;
+  max-width: 100%;
+}
 }
 
 /* For Very Small Screens */
@@ -696,5 +705,8 @@ span {
   }
   .home-content h1 {
     font-size: 4rem;
+  }
+  .contact form .input-box input {
+    width: 100%; /* full width instead of 49% side-by-side */
   }
 }
