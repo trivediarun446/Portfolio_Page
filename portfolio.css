@@ -158,6 +158,9 @@ span { color: var(--main-color); }
 
 /* ---------- Home ---------- */
 .home {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -166,6 +169,8 @@ span { color: var(--main-color); }
 }
 
 .home-container {
+  position: relative;
+  z-index: 1;                  /* globe ke upar rahega */
   display: flex;
   flex-wrap: wrap;             /* isi ki wajah se choti screen par apne aap stack hoga */
   justify-content: space-between;
@@ -486,6 +491,62 @@ span { color: var(--main-color); }
 .contact form .btn { margin-top: 1rem; }
 
 /* ==========================================================
+   SKILLS GLOBE — home section ka interactive background
+   Markup: .home ke andar #globe-wrap > (#globe-canvas + #globe-nodes)
+   Logic:  skills-globe.js
+   ========================================================== */
+
+#globe-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: -1;                 /* content ke peeche, section bg ke aage */
+  pointer-events: none;
+}
+
+#globe-canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+#globe-nodes {
+  position: absolute;
+  inset: 0;
+}
+
+.skill-node {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 6.6rem;
+  height: 7.6rem;
+  display: grid;
+  place-items: center;
+  opacity: 0;                  /* JS pehle frame par set kar dega */
+  transform: translate3d(-200px, -200px, 0);
+  will-change: transform, opacity;
+}
+
+.skill-node svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.skill-node svg polygon {
+  fill: rgba(25, 31, 54, .55);
+  stroke: rgba(89, 178, 244, .55);
+  stroke-width: 2.5;
+}
+
+.skill-node i {
+  position: relative;
+  font-size: 2.2rem;
+  color: var(--main-color);
+}
+
+/* ==========================================================
    RESPONSIVE — sirf ek hi set of media queries (pehle 3 duplicate set the)
    ========================================================== */
 
@@ -553,6 +614,11 @@ span { color: var(--main-color); }
 
   .project-box img { height: 28rem; }
   .intership-container .intership-box { padding: 3rem 2.5rem; }
+
+  /* Globe halka kar diya taaki text ke upar na chadhe */
+  #globe-wrap { opacity: .4; }
+  .skill-node { width: 5rem; height: 5.8rem; }
+  .skill-node i { font-size: 1.7rem; }
 }
 
 /* Small phones */
