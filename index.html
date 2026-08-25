@@ -4,238 +4,213 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal Portfolio</title>
-    <!-- Here I add a link of google font  -->
+    <meta name="description"
+        content="Arun Trivedi — B.Tech CSE student working with C++, Python, Machine Learning and Full Stack Development.">
+    <title>Arun Trivedi | Personal Portfolio</title>
+
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
         rel="stylesheet">
-    <!-- This is oue css file link section  -->
-    <!-- Font Awesome CDN Link -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="portfolio.css">
-
 </head>
 
 <body>
-    <!-- Header Section -->
+
+    <!-- ================= Header ================= -->
     <header class="header">
-        <!-- Logo  -->
-        <a href="#" class="logo"> Portfolio</a>
+        <a href="#home" class="logo">Portfolio</a>
 
-
-        <!-- Navigation Bar -->
         <nav class="navbar">
             <a href="#home" class="active">Home</a>
-            <a href="#about"> About</a>
-            <a href="#knowledge"> knowledge</a>
-            <a href="#project"> Project </a>
-            <a href="#internship">Intership</a>
-            <a href="#contact"> Contact</a>
+            <a href="#about">About</a>
+            <a href="#knowledge">Knowledge</a>
+            <a href="#project">Projects</a>
+            <a href="#internship">Internship</a>
+            <a href="#contact">Contact</a>
         </nav>
-        <a href="#" class="bars"><i class="fa-solid fa-bars" id="menu-icon"></i></a>
 
+        <!-- Hamburger: click handler ab is <a> par hai -->
+        <a href="#" class="bars" aria-label="Open navigation menu">
+            <i class="fa-solid fa-bars" id="menu-icon"></i>
+        </a>
     </header>
 
-
-    <!-- Home Page  -->
+    <!-- ================= Home ================= -->
     <section class="home" id="home">
         <div class="home-container">
             <div class="home-content">
                 <h3>Hi, Myself</h3>
                 <h1>Arun Trivedi</h1>
-                <h3>And I'm a <span>Engineering Enthusiast</span></h3>
-                <!--  -->
-                <p>Driven and detail-oriented B.Tech Computer Science student with a strong programming foundation in C++ and Python. Highly
-passionate about contributing to a dynamic IT environment. Eager to leverage academic coursework and hands-on coding
-experience to solve complex, real-world problems and drive technological innovation within a challenging developer role.</p>
+                <h3>And I'm a <span class="typing">Engineering Enthusiast</span></h3>
+
+                <p>Driven and detail-oriented B.Tech Computer Science student with a strong programming foundation in
+                    C++ and Python. Highly passionate about contributing to a dynamic IT environment. Eager to leverage
+                    academic coursework and hands-on coding experience to solve complex, real-world problems and drive
+                    technological innovation within a challenging developer role.</p>
 
                 <div class="socialmedia">
-                    <a href="https://www.linkedin.com/in/aruntrivedi446?utm_source=share_via&utm_content=profile&utm_medium=member_android"><i class="fa-brands fa-linkedin"></i></a>
-                    <a href="https://github.com/trivediarun446"><i class="fa-brands fa-github"></i></a>
-                    <a href="https://gitlab.com/trivediarun446"><i class="fa-brands fa-gitlab"></i></a>
-                    <a href="https://leetcode.com/u/Aruntrivedi446/"><i class="fa-solid fa-code"></i></a>
+                    <a href="https://www.linkedin.com/in/aruntrivedi446" target="_blank" rel="noopener"
+                        aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="https://github.com/trivediarun446" target="_blank" rel="noopener"
+                        aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://gitlab.com/trivediarun446" target="_blank" rel="noopener"
+                        aria-label="GitLab"><i class="fa-brands fa-gitlab"></i></a>
+                    <a href="https://leetcode.com/u/Aruntrivedi446/" target="_blank" rel="noopener"
+                        aria-label="LeetCode"><i class="fa-solid fa-code"></i></a>
                 </div>
-                <a href="Arun 2301640100113.pdf" class="btn">Download CV</a>
+
+                <!-- File name mein space tha, isliye %20 se encode kiya -->
+                <a href="Arun%202301640100113.pdf" class="btn" download>Download CV</a>
             </div>
-            <!-- <div class="home-bg">
-                <img src="profile photo.jpg" alt="Arun">
-            </div> -->
         </div>
     </section>
 
+    <!-- ================= About ================= -->
     <section class="about" id="about">
-        <!-- <div class="about-img">
-            <img src="home-img.jpg" alt="Arun Trivedi">
-        </div> -->
-
         <div class="about-content">
-            <h2 class="heading"> About <span>Me</span></h2>
-            <h3> AI & Data Science Learner </h3>
-            <p>Hi, I'm Arun. I'm a tech student at PSIT Kanpur who loves turning ideas into code. 
-                Right now, I'm spending most of my time learning about AI, Data Science, and Full Stack Development.
-                For me, it's all about building things that actually work and solve problems, 
-                whether that's through a clever Python script or a machine learning model</p>
-            <a href="#" class="btn"> Read More</a>
+            <h2 class="heading">About <span>Me</span></h2>
+            <h3>AI &amp; Data Science Learner</h3>
+            <p>Hi, I'm Arun. I'm a tech student at PSIT Kanpur who loves turning ideas into code. Right now, I'm
+                spending most of my time learning about AI, Data Science, and Full Stack Development. For me, it's all
+                about building things that actually work and solve problems, whether that's through a clever Python
+                script or a machine learning model.</p>
+            <a href="#project" class="btn">Read More</a>
         </div>
-        <div class="home-bg">
-            <img src="profile photo.jpg" alt="Arun">
+
+        <div class="about-img">
+            <img src="profile photo.jpg" alt="Portrait of Arun Trivedi">
         </div>
     </section>
 
+    <!-- ================= Technical knowledge ================= -->
     <section class="knowladge" id="knowledge">
-        <h2 class="heading">Technical <span>knowledge</span></h2>
+        <h2 class="heading">Technical <span>Knowledge</span></h2>
+
         <div class="knowladge-container">
             <div class="knowladge-box2">
                 <i class="fa-solid fa-code"></i>
-                <h3>C/CPP</h3>
-                <p>Strong foundation in C and C++, with a deep understanding of Object-Oriented Programming (OOP) principles.
-                     Highly proficient in implementing Data Structures and Algorithms (DSA) to solve complex analytical problems.</p>
-                <!-- <a href="#" class="btn"></a> -->
+                <h3>C / C++</h3>
+                <p>Strong foundation in C and C++, with a deep understanding of Object-Oriented Programming (OOP)
+                    principles. Highly proficient in implementing Data Structures and Algorithms (DSA) to solve complex
+                    analytical problems.</p>
             </div>
-
 
             <div class="knowladge-box2">
                 <i class="fa-brands fa-python"></i>
                 <h3>Python</h3>
-                <p>Solid command of Python applied to real-world scenarios. Developed a fully functional Expense Tracker desktop
-                     application, demonstrating practical experience in writing efficient scripts and building utility-driven projects.</p>
-                <!-- <a href="#" class="btn"></a> -->
+                <p>Solid command of Python applied to real-world scenarios. Developed a fully functional Expense Tracker
+                    desktop application, demonstrating practical experience in writing efficient scripts and building
+                    utility-driven projects.</p>
             </div>
+
             <div class="knowladge-box2">
                 <i class="fa-solid fa-database"></i>
                 <h3>Database</h3>
-                <p>Comprehensive understanding of Database Management Systems. Skilled in designing relational schemas, writing complex SQL queries, 
-                    and utilizing tools like Pandas for efficient data manipulation and management.</p> 
-                 <!-- <a href="#" class="btn"></a> -->
+                <p>Comprehensive understanding of Database Management Systems. Skilled in designing relational schemas,
+                    writing complex SQL queries, and utilizing tools like Pandas for efficient data manipulation and
+                    management.</p>
             </div>
 
             <div class="knowladge-box2">
                 <i class="fa-solid fa-robot"></i>
                 <h3>Machine Learning</h3>
-                <p>Practical knowledge of Machine Learning concepts and predictive modeling. Experienced in training and evaluating models using algorithms such as Linear Regression, 
-                    Logistic Regression, Ridge, and Lasso to derive data-driven insights.</p>
-                <!-- <a href="#" class="btn"></a> -->
+                <p>Practical knowledge of Machine Learning concepts and predictive modeling. Experienced in training and
+                    evaluating models using algorithms such as Linear Regression, Logistic Regression, Ridge, and Lasso
+                    to derive data-driven insights.</p>
             </div>
-            
+
             <div class="knowladge-box2">
-                <i class="fa-solid fa-code"></i>
+                <i class="fa-solid fa-laptop-code"></i>
                 <h3>Web Development</h3>
-                <p>Capable in front-end web development utilizing HTML, CSS, and JavaScript. Designed and built a fully responsive personal portfolio
-                    from scratch to showcase technical projects, focusing on clean UI and interactive user experiences.</p>
-                <!-- <a href="#" class="btn"></a> -->
+                <p>Capable in front-end web development utilizing HTML, CSS, and JavaScript. Designed and built a fully
+                    responsive personal portfolio from scratch to showcase technical projects, focusing on clean UI and
+                    interactive user experiences.</p>
             </div>
 
             <div class="knowladge-box2">
                 <i class="fa-brands fa-git-alt"></i>
                 <h3>Git</h3>
-                <p>Proficient in version control using Git. Experienced in managing source code, tracking project changes, and maintaining organized repositories on 
-                    GitHub for seamless development and daily coding practice</p>
-                <!-- <a href="#" class="btn"></a> -->
+                <p>Proficient in version control using Git. Experienced in managing source code, tracking project
+                    changes, and maintaining organized repositories on GitHub for seamless development and daily coding
+                    practice.</p>
             </div>
-
-
-            
         </div>
-
     </section>
-    <!-- Yaha se code naya likhna start kiya hai  -->
-    <!-- Project Section -->
 
-<section class="project" id="project">
-    <h2 class="heading">Latest <span>Project</span></h2>
-    
-    <div class="project-container">
-        
-        <!-- <div class="project-box">
-            <img src="profile photo.jpg" alt="">
-            <div class="project-layer">
-                <h4>Web design</h4>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, praesentium.</p>
+    <!-- ================= Projects ================= -->
+    <section class="project" id="project">
+        <h2 class="heading">Latest <span>Projects</span></h2>
+
+        <div class="project-container">
+            <div class="project-box">
+                <img src="images (1).jpeg" alt="RoadGuard-AI project preview" loading="lazy">
+                <div class="project-layer">
+                    <h4>RoadGuard-AI</h4>
+                    <p>Automated road quality inspection using an AI-driven computer vision pipeline. Trained a custom
+                        YOLOv8 model to process dashcam feeds with 90%+ accuracy, scoring road health in 10-second
+                        segments. Cut manual inspection time by 75% with an automated logging system built on SQLite and
+                        Folium GIS.</p>
+                </div>
             </div>
-        </div> -->
-         <div class="project-box">
-            <img src="images (1).jpeg" alt="">
-            <div class="project-layer">
-                <h4>RoadGuard-AI</h4>
-                <p>Automated road quality inspection by developing an AI-driven computer vision pipeline, directly
-                addressing infrastructure challenges.Trained a custom YOLOv8 model to process dashcam video feeds with 90%+ accuracy, evaluating
-                road conditions in 10-second segments to generate dynamic health scores. Reduced manual inspection time by 75% by building an automated logging system using SQLite and
-                Folium GIS</p>
-            </div>
-        </div>
-        <div class="project-box">
-            <img src="logoExpenseTracker.png" alt="">
-            <div class="project-layer">
-                <h4>Expense Tracker</h4>
-                <p>Developed a desktop expense-tracking application in Python with a SQLite database, implementing full CRUD
-                   operations for adding, categorizing, editing, and deleting expense records.Designed and queried a relational 
-                   SQL schema to persist and aggregate expense data across sessions, generating
-                   category-wise spending summaries.
-                </p>
+
+            <div class="project-box">
+                <img src="logoExpenseTracker.png" alt="Expense Tracker project preview" loading="lazy">
+                <div class="project-layer">
+                    <h4>Expense Tracker</h4>
+                    <p>Desktop expense-tracking application in Python with a SQLite database, implementing full CRUD
+                        operations for adding, categorizing, editing, and deleting records. Designed and queried a
+                        relational SQL schema to persist and aggregate spending data into category-wise summaries.</p>
+                </div>
             </div>
         </div>
+    </section>
 
-       
-        
-    </div>
-</section>
-<!-- Yeh section internship ke liye hai  -->
- <section class="internship" id="internship">
-       <h2 class="heading">My <span>Intership</span></h2>
-       
-       <div class="intership-container">
-            <!-- <div class="intership-box">
-                <i class="fa-solid fa-code"></i>
-                <h3>Web developer</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, explicabo.</p>
-                <a href="#" class="btn">Read More</a>
-            </div> -->
+    <!-- ================= Internship ================= -->
+    <section class="internship" id="internship">
+        <h2 class="heading">My <span>Internship</span></h2>
 
+        <div class="intership-container">
             <div class="intership-box">
                 <i class="fa-solid fa-code"></i>
                 <h3>Software Developer Engineer</h3>
-                <p>Built and maintained responsive pages across the company's childcare platform - including service, program, and
-                  contact pages - for an early-stage startup.
-                  Set up the e-commerce and booking sections, configuring tiered childcare packages, product pages, and online
-                  enquiry/contact forms.
-                  Performed cross-device and cross-browser testing, identifying and resolving layout and functional issues to
-                  improve the site's reliability and user experience</p>
-                <!-- <a href="#" class="btn">Read More</a> -->
+                <p>Built and maintained responsive pages across the company's childcare platform — including service,
+                    program, and contact pages — for an early-stage startup. Set up the e-commerce and booking sections,
+                    configuring tiered childcare packages, product pages, and online enquiry/contact forms. Performed
+                    cross-device and cross-browser testing, identifying and resolving layout and functional issues to
+                    improve the site's reliability and user experience.</p>
             </div>
-
-            <!-- <div class="intership-box">
-                <i class="fa-solid fa-code"></i>
-                <h3>Web developer</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, explicabo.</p>
-                <a href="#" class="btn">Read More</a>
-            </div> -->
-       </div>
+        </div>
     </section>
 
-    <!-- Contact section -->
-     <!-- Contact section -->
-<section class="contact" id="contact">
-    <h2 class="heading">Contact <span>me</span></h2>
-    <!-- Yahan id="contact-form" add kiya hai -->
-    <form action="https://formspree.io/f/mvkpkzwp" method="POST" id="contact-form">
-        <div class="input-box">
-            <input type="text" name="Name" placeholder="Full Name" required>
-            <input type="email" name="Email" placeholder="Email Address" required>
-        </div>
-        <div class="input-box">
-            <input type="number" name="Mobile" placeholder="Mobile number" required>
-            <input type="text" name="Subject" placeholder="Email subject" required>
-        </div>
-        <textarea name="Message" id="" cols="30" rows="10" placeholder="Your Message" required></textarea>
-        
-        <input type="submit" value="Send Message" class="btn">
-    </form>
-</section>
-    <script src ="https://unpkg.com/scrollreveal"></script>
-    <script src = "https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <!-- ================= Contact ================= -->
+    <section class="contact" id="contact">
+        <h2 class="heading">Contact <span>Me</span></h2>
+
+        <form action="https://formspree.io/f/mvkpkzwp" method="POST" id="contact-form">
+            <div class="input-box">
+                <input type="text" name="Name" placeholder="Full Name" autocomplete="name" required>
+                <input type="email" name="Email" placeholder="Email Address" autocomplete="email" required>
+            </div>
+            <div class="input-box">
+                <!-- type="tel" — mobile par number keypad khulta hai -->
+                <input type="tel" name="Mobile" placeholder="Mobile Number" autocomplete="tel" required>
+                <input type="text" name="Subject" placeholder="Email Subject" required>
+            </div>
+            <textarea name="Message" cols="30" rows="8" placeholder="Your Message" required></textarea>
+
+            <input type="submit" value="Send Message" class="btn">
+            <p id="form-status" style="font-size:1.5rem; margin-top:1.5rem;"></p>
+        </form>
+    </section>
+
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
     <script src="portfolio.js"></script>
 </body>
 

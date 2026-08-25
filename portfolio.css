@@ -1,51 +1,100 @@
-/* Import some font from the google font */
-@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+/* ==========================================================
+   Arun Trivedi — Personal Portfolio
+   Responsive stylesheet (cleaned + fixed)
+   Breakpoints: 1200px / 991px / 768px / 617px / 450px
+   ========================================================== */
 
-/* Mistakes 
-1) Extra top padding in the home section
-*/
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
 
+/* ---------- Design tokens ---------- */
+:root {
+  --bg-color: #191f36;
+  --snd-bf-color: #262b40;
+  --text-color: #fff;
+  --muted-color: #c3c9db;
+  --main-color: #59b2f4;
+  --hover-color: #2f8fd8;      /* pehle ye variable define hi nahi tha */
+  --header-height: 9rem;
+}
 
-
-/* Defult setting of my web page */
+/* ---------- Reset ---------- */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   border: none;
-  scroll-behavior: smooth;
   outline: none;
   text-decoration: none;
   font-family: "Nunito", sans-serif;
 }
 
-
-:root {
-  --bg-color: #191f36;
-  --snd-bf-color: #262B40;
-  --text-color: #fff;
-  --main-color: #59B2F4 ;
-}
-
-
-
 html {
-  font-size: 62.5%;
+  font-size: 62.5%;            /* 1rem = 10px */
+  scroll-behavior: smooth;     /* * ke bajaye html par — sahi jagah */
+  scroll-padding-top: var(--header-height);
   overflow-x: hidden;
 }
 
 body {
   background: var(--bg-color);
   color: var(--text-color);
-  display: flex;
-  flex-direction: column;
+  overflow-x: hidden;          /* ScrollReveal ka side-scroll rokta hai */
 }
 
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Keyboard users ke liye visible focus */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: .2rem solid var(--main-color);
+  outline-offset: .3rem;
+}
+
+/* ---------- Layout base ---------- */
 section {
-  min-height: 100vh;
-  padding: 8rem 9% 2rem;
+  padding: 12rem 9% 6rem;
+  scroll-margin-top: var(--header-height);
 }
 
+span { color: var(--main-color); }
+
+.heading {
+  text-align: center;
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  line-height: 1.2;
+  margin-bottom: 4rem;
+}
+
+/* ---------- Buttons (ek hi jagah define) ---------- */
+.btn {
+  display: inline-block;
+  margin-top: 2rem;
+  padding: 1rem 2.4rem;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--bg-color);
+  background-color: var(--main-color);
+  box-shadow: 0 0 1rem var(--main-color);
+  border: .2rem solid var(--main-color);
+  border-radius: 1.5rem;
+  cursor: pointer;
+  transition: .3s ease;
+}
+
+.btn:hover {
+  box-shadow: none;
+  transform: translateY(-.5rem);
+  background-color: var(--hover-color);
+  border-color: var(--hover-color);
+  color: var(--text-color);
+}
+
+/* ---------- Header / Navbar ---------- */
 .header {
   position: fixed;
   top: 0;
@@ -56,347 +105,212 @@ section {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 2rem;
   z-index: 100;
+  transition: .3s ease;
+}
+
+.header.sticky {
+  padding: 1.2rem 9%;
+  box-shadow: 0 .1rem 1rem rgba(0, 0, 0, .4);
 }
 
 .logo {
-  font-size: 3rem;
+  font-size: 2.6rem;
   color: var(--text-color);
-  font-weight: 500;
-  cursor: default;
+  font-weight: 800;
+  white-space: nowrap;
 }
 
 .navbar a {
-  justify-content: right;
-  font-size: 3rem;
+  position: relative;
+  font-size: 1.8rem;           /* 3rem bahut bada tha, nav overflow ho raha tha */
   color: var(--text-color);
   margin-left: 3.5rem;
-  font-weight: 500;
-  text-decoration: none;
-
+  font-weight: 600;
 }
 
-/* Remember : In this hover section i will add sequential underline effect  */
-.navbar a:hover {
-  text-decoration: underline;
-  color: var(--text-color);
+/* Sequential underline effect */
+.navbar a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -.6rem;
+  width: 0;
+  height: .2rem;
+  background: var(--main-color);
+  transition: width .3s ease;
 }
 
-.navbar a.active {
-  text-decoration: none;
-  color: var(--text-color);
-}
+.navbar a:hover::after,
+.navbar a.active::after { width: 100%; }
 
-/* Menu btn is not working i have to check it later */
-#menu-icon {
-  font-size: 3.6rem;
-  color: var(--text-color);
+.navbar a:hover,
+.navbar a.active { color: var(--main-color); }
+
+/* Hamburger button */
+.bars {
   display: none;
+  font-size: 3.4rem;
+  color: var(--text-color);
+  line-height: 1;
 }
 
+/* ---------- Home ---------- */
 .home {
   display: flex;
-  padding-top: 18rem;
+  align-items: center;
   justify-content: center;
-  /* justify-items: center; */
-  /* flex-direction: column; */
-  align-items:flex-start; 
-  /* text-align: center; */
-  /* gap: 1.5rem; */
-}
-
-.home-content h3 {
-  font-size: 4.2rem;
-  font-weight: 700;
-}
-.home-content h1 {
-  font-size: 2.2rem;
-  font-weight: 700;
+  min-height: 100vh;
+  padding-top: 14rem;
 }
 
 .home-container {
   display: flex;
-  /* flex-direction: row; Align content and image side-by-side */
+  flex-wrap: wrap;             /* isi ki wajah se choti screen par apne aap stack hoga */
   justify-content: space-between;
-  align-items: flex-start;
-  /* align-items: center; */
+  align-items: center;
+  gap: 4rem;
   max-width: 1200px;
   width: 100%;
-  gap: 2rem;
-  /* Add space between content and image */
 }
 
 .home-content {
-  flex: 1;
+  flex: 1 1 40rem;
+  min-width: 0;
   text-align: left;
 }
 
-.home-content h3:nth-of-type(2) {
-  margin-bottom: 2rem;
+.home-content h3 {
+  font-size: clamp(2rem, 3.2vw, 3.2rem);
+  font-weight: 700;
 }
 
-span {
-  color: var(--main-color);
+.home-content h1 {
+  /* h1 (naam) pehle h3 se chota tha — ab sahi hierarchy */
+  font-size: clamp(3.6rem, 7vw, 5.6rem);
+  font-weight: 800;
+  line-height: 1.2;
+  margin: .5rem 0;
 }
 
-/* Continiue with 13:49  */
-
-.home-img img {
-
-  width: 2vw;
-  animation: floatImage 4s ease-in-out infinite;
-}
-
-@keyframes floatImage {
-  0% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-2.4rem);
-  }
-
-  100% {
-    transform: translateY(0);
-  }
-}
-
-.home-bg img {
-  width: 20vw;
-  border-radius: 50%;
-  animation: floatImage 4s ease-in-out infinite;
-  /* Animation properties */
-  box-shadow: 0 0 10px var(--main-color);
-}
+.home-content h3:nth-of-type(2) { margin-bottom: 2rem; }
 
 .home-content p {
   font-size: 1.6rem;
+  line-height: 1.8;
+  color: var(--muted-color);
+  max-width: 70rem;
 }
 
 .socialmedia {
   display: flex;
+  flex-wrap: wrap;
   justify-content: flex-start;
-  gap: 1rem;
+  gap: 1.5rem;
+  margin: 3rem 0;
 }
 
 .socialmedia a {
   display: inline-flex;
-  /* flex-direction: column; */
   justify-content: center;
   align-items: center;
-  width: 4rem;
-  height: 4rem;
+  width: 4.2rem;
+  height: 4.2rem;
   background: transparent;
   border: .2rem solid var(--main-color);
-  border-radius: 2rem;
+  border-radius: 50%;
   font-size: 2rem;
   color: var(--main-color);
-  margin: 3rem 1.5rem 3rem 0;
-  transition: .5s ease;
+  transition: .4s ease;
 }
 
 .socialmedia a:hover {
   background: var(--main-color);
   color: var(--snd-bf-color);
   box-shadow: 0 0 1rem var(--main-color);
+  transform: translateY(-.4rem);
 }
 
-.btn {
-  margin-top: 2rem;
-  padding: 0.8rem 2rem;
-  font-size: 1.6rem;
-  color: var(--bg-color);
-  background-color: var(--main-color);
-  box-shadow: 0 0 1rem var(--main-color);
-  border: 0.2rem solid var(--main-color);
-  border-radius: 1.5rem;
-  transition: 0.3s ease;
-}
-
-.home .btn:hover {
-  box-shadow: none;
-  transform: translateY(-10px);
-  background-color: var(--hover-color);
-  color: var(--text-color);
-  border-color: var(--hover-color);
-}
+/* ---------- About ---------- */
 .about {
   display: flex;
-  justify-content: start;
-  margin-left: 15rem;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 2rem;
-  padding: 2rem; /* Optional: Add padding to ensure spacing around content */
+  justify-content: center;
+  gap: 6rem;
+  /* margin-left:15rem / margin-right:15rem hata diya — wahi horizontal
+     scroll aur mobile par squeeze ki main wajah thi */
   background: var(--bg-color);
-  flex-wrap: wrap; /* Ensure elements stack on smaller screens */
-}
-
-.heading {
-  text-align: center;
-  font-size: 5.5rem;
 }
 
 .about-content {
-  max-width: 600px; /* Limit the width of the content for better alignment */
-  /* align-items: flex-start; */
-  margin-right: 15rem;
+  flex: 1 1 42rem;
+  max-width: 62rem;
+  min-width: 0;
 }
 
-.about-content h2 {
+.about-content .heading {
   text-align: left;
-  line-height: 1.2;
+  margin-bottom: 2rem;
 }
 
-.about-content h3 {
-  font-size: 3.2rem;
-}
+.about-content h3 { font-size: clamp(2.2rem, 3.4vw, 3.2rem); }
 
 .about-content p {
-  font-size: 2.6rem;
-  margin: 2rem 0 3rem; /* Fixed the typo */
+  font-size: 1.7rem;           /* 2.6rem readability ke liye bahut bada tha */
+  line-height: 1.8;
+  color: var(--muted-color);
+  margin: 1.5rem 0 1rem;
 }
 
-.about .btn {
-  margin-top: 2rem;
-  padding: 0.8rem 2rem;
-  font-size: 1.6rem;
-  color: var(--bg-color);
-  background-color: var(--main-color);
-  box-shadow: 0 0 1rem var(--main-color);
-  border: 0.2rem solid var(--main-color);
-  border-radius: 1.5rem;
-  transition: 0.3s ease;
-}
-.about .btn:hover {
-  box-shadow: none;
-  transform: translateY(-10px);
-  background-color: var(--hover-color);
-  color: var(--text-color);
-  border-color: var(--hover-color);
+.about-img {
+  flex: 0 1 32rem;
+  display: flex;
+  justify-content: center;
 }
 
-
-/* @media (max-width: 768px) { */
-  /* .about {
-    flex-direction: column; /* Stack items vertically on smaller screens */
-    /* text-align: center; /* Align text centrally on small screens */
-  
-
-  /* .about-content {
-    max-width: 100%; /* Allow full width on small screens */
-  /* } */ 
-  /* .home{
-    flex-direction: column;
-    text-align: center;
-  }
-  .home-content{
-    max-width: 100%;
-  }  */
-    /* .portfolio-container {
-  grid-template-columns: repeat(2, 1fr);
+.about-img img {
+  width: 100%;
+  max-width: 32rem;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0 0 1.5rem var(--main-color);
+  animation: floatImage 4s ease-in-out infinite;
 }
-/* with: */
-/* .project-container {
-  grid-template-columns: 1fr;
+
+@keyframes floatImage {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-2.4rem); }
+}
+
+/* ---------- Technical knowledge ---------- */
+.knowladge-container {
+  /* flex + calc(100%/3 - 40px) ki jagah auto-fit grid:
+     har screen par columns khud adjust ho jaate hain */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(28rem, 1fr));
   gap: 2.5rem;
-  padding: 0 1rem;
-}
-}  */
-
-/* CSS for knowladge section   */
-/* .knowladge h2 {
-  padding-top: 1rem;
-  /* margin-top: 10rem; */
-  /* margin-bottom: 1.5rem; */
-  /* font-size: 3rem; Adjusted for better fit */
-  /* color: var(--main-color);
-  text-align: center;
-} */
-.knowladge h2 {
-  padding-top: 1rem; /* Upar se thoda space taaki navbar se na chipke */
-  margin-bottom: 0.1rem; /* Heading aur boxes ke beech ek perfect distance */
-  color: var(--main-color);
-  font-size: 5rem;
-  text-align: center;
-}
-
-/* .knowladge-container {
-  display: flex;
-  flex-wrap: wrap;
-  padding-top: 0; /* Yahan se extra padding hata di jo boxes ko neeche dhakel rahi thi */
-  /* padding-bottom: 5rem; /* Niche thoda space add kiya taaki aane wale agle section se proper gap bane */
-  /* justify-content: center; */
-  /* gap: 2.5rem; Boxes ke beech ka horizontal aur vertical gap */
-  /* max-width: 1200px; */
-  /* margin: 0 auto;  */
-/* }  */ 
-.knowladge-container {
-  display: flex;
-  flex-wrap: wrap;
-  padding-top: 0; /* Yahan se extra padding hata di jo boxes ko neeche dhakel rahi thi */
-  padding-bottom: 5rem; /* Niche thoda space add kiya taaki aane wale agle section se proper gap bane */
-  justify-content: center;
-  gap: 2.5rem; /* Boxes ke beech ka horizontal aur vertical gap */
   max-width: 1200px;
-  margin: 0 auto; 
-}
-.knowladge h2 span{
-  color: var(--text-color);
-}
-.knowladge-container {
-  /* margin-top: 2rem; */
-  display: flex;
-  flex-wrap: wrap;
-  padding-top: 3rem;
-  justify-content: center;
-  gap: 20px;
-  max-width: 1200px;
-  margin: 0 auto; /* Centers the container */
-}
-@keyframes appear {
-  from {
-    opacity: 0;
-    transform: scale(0.5); /* Changed from `scale` to `transform` */
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+  margin: 0 auto;
 }
 
 .knowladge-box,
 .knowladge-box2 {
-  /* padding-top: 2rem; */
-  font-size: 2rem;
   background-color: var(--snd-bf-color);
-  border-radius: 12px;
-  padding: 30px;
-  width: calc(100% / 3 - 40px); /* Ensures 3 cards per row */
+  border-radius: 1.2rem;
+  padding: 3rem 2.5rem;
   text-align: center;
-  animation: appear 0.8s ease-in-out; /* Applied animation */
-  transition: transform 0.3s, box-shadow 0.3s;
+  border: .2rem solid transparent;
+  transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
 }
 
 .knowladge-box:hover,
 .knowladge-box2:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 12px 20px var(--hover-color);
-  box-shadow: 0 8px 15px var(--main-color);
-}
-
-.knowladge-box h3,
-.knowladge-box2 h3 {
-  padding-top: 2rem;
-  font-size: 2.5rem;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  word-wrap: break-word;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: normal;
-  margin-bottom: 1.5rem;
-  color: var(--text-color);
+  transform: translateY(-1rem);
+  border-color: var(--main-color);
+  box-shadow: 0 .8rem 1.5rem rgba(89, 178, 244, .25);
 }
 
 .knowladge-box i,
@@ -405,45 +319,34 @@ span {
   color: var(--main-color);
 }
 
+.knowladge-box h3,
+.knowladge-box2 h3 {
+  font-size: 2.2rem;
+  margin: 1.5rem 0;
+  color: var(--text-color);
+  overflow-wrap: break-word;
+}
+
 .knowladge-box p,
 .knowladge-box2 p {
-  font-size: 0.9rem;
-  color: var(--text-color);
-  margin-bottom: 20px;
+  /* 0.9rem = 9px tha — mobile par padhna hi mushkil */
+  font-size: 1.5rem;
+  line-height: 1.7;
+  color: var(--muted-color);
 }
 
+/* ---------- Projects ---------- */
+.project { background: var(--snd-bf-color); }
 
-/* CSS for project section start date is 11/06/2026 */
-/* Yeh se project section start hai  */
-
-
-
-.project{
-  background: var(--snd-bf-color);
-
-}
-.project h2{
-  margin-top: 4rem;
-  margin-bottom: 4rem;
-
-}
-/* .project-container{
-  display: grid;
-  grid-template-columns: repeat(2,1fr) ;
-  align-items: center;
-  gap:2.5rem ; 
-} */
 .project-container {
   display: grid;
-  /* 3 ki jagah 2 columns set kar do */
-  grid-template-columns: repeat(2, 1fr); 
-  align-items: center;
-  justify-content: center;
-  gap: 5rem; 
-  max-width: 900px; 
-  margin: 0 auto; 
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  gap: 3rem;
+  max-width: 1050px;
+  margin: 0 auto;
 }
-.project-container .project-box{
+
+.project-box {
   position: relative;
   border-radius: 2rem;
   box-shadow: 0 0 1rem var(--bg-color);
@@ -451,75 +354,69 @@ span {
   display: flex;
 }
 
-.project-box img{
+.project-box img {
   width: 100%;
-  transition: .5s ease ;
-  opacity: 0.7;
+  height: 32rem;
+  object-fit: cover;
+  transition: .5s ease;
+  opacity: .8;
 }
-.project-box:hover img{
-  transform: scale(1.1);
-}
-.project-box .project-layer{
-  position: absolute ;
-  bottom: 0 ; 
-  font-size: 2rem;
-  left :0 ; 
-  width: 100% ; 
-  height :100% ; 
-  background: linear-gradient(rgba(0,0,0,0.1),var(--main-color));
-  display: flex ;
-  justify-content: center;
-  align-items: center;
+
+.project-box:hover img { transform: scale(1.1); }
+
+.project-layer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(0, 0, 0, .3), var(--main-color));
+  display: flex;
   flex-direction: column;
-  text-align: center;
-  padding: 0 4rem;
-  transform: translateY(100%);
-  transition: .5s  ease;
-}
-.project-box:hover .project-layer{
-  transform: translateY(0);
-}
-.project-layer h4{
-  font-size: 3rem;
-}
-
-.project-layer a{
-  display: inline-flex;
   justify-content: center;
   align-items: center;
-  width: 5rem;
-  height: 5rem;
-  background: var(--text-color);
-  border-radius: 50%;
+  text-align: center;
+  padding: 2.5rem 2rem;
+  overflow-y: auto;
+  transform: translateY(100%);
+  transition: .5s ease;
 }
 
-/* Yaha project wala section khtm ho gaya hai  */
-/* Ab yaha se internship wala section start  */
+.project-box:hover .project-layer { transform: translateY(0); }
 
-/* Spelling fix: 'internship' kar diya hai taaki HTML se match ho jaye */
-.internship h2 {
-  margin-bottom: 5rem;
+.project-layer h4 {
+  font-size: 2.4rem;
+  margin-bottom: 1rem;
 }
 
+.project-layer p {
+  font-size: 1.4rem;
+  line-height: 1.6;
+}
+
+/* Touch devices par hover hota hi nahi — wahan layer hamesha dikhegi */
+@media (hover: none) {
+  .project-layer {
+    transform: translateY(0);
+    background: linear-gradient(rgba(0, 0, 0, .55), rgba(0, 0, 0, .85));
+  }
+  .project-box img { opacity: .5; }
+}
+
+/* ---------- Internship ---------- */
 .intership-container {
   display: flex;
   justify-content: center;
-  align-items: center;
   flex-wrap: wrap;
   gap: 2rem;
-  margin-top: 3rem;
-  padding: 0 2rem; /* Mobile devices par side se chipke na, isliye thodi padding */
 }
 
 .intership-container .intership-box {
-  /* Ek box ko poori screen par failne se rokne ke liye width set ki hai */
-  flex: 0 1 80rem; /* Box thoda bada aur center mein rahega */
+  flex: 1 1 55rem;
+  max-width: 85rem;
   background: var(--snd-bf-color);
-  padding: 4rem; /* Padding thodi badha di hai taaki andar ka text saaf dikhe */
+  padding: 4rem;
   border-radius: 2rem;
   text-align: center;
   border: .2rem solid var(--bg-color);
-  transition: .5s ease;
+  transition: .4s ease;
 }
 
 .intership-container .intership-box:hover {
@@ -528,116 +425,89 @@ span {
 }
 
 .intership-box i {
-  font-size: 7rem;
+  font-size: 6rem;
   color: var(--main-color);
-  margin-bottom: 1.5rem; /* Icon ke neeche thoda gap de diya */
+  margin-bottom: 1.5rem;
 }
 
 .intership-box h3 {
-  font-size: 3rem;
+  font-size: clamp(2.2rem, 3.5vw, 3rem);
   margin-bottom: 2rem;
 }
 
 .intership-box p {
   font-size: 1.6rem;
-  line-height: 1.8; /* Lines ke beech gap badhaya hai taaki padhne mein aasaani ho */
-  margin: 1rem 0;
-  text-align: justify; /* Paragraph ko dono taraf se barabar align karne ke liye */
+  line-height: 1.8;
+  color: var(--muted-color);
+  text-align: justify;
 }
 
-/* Intership section khtm  */
-
-/* Yaha se contact section start  */
-
-.contact form{
+/* ---------- Contact ---------- */
+.contact form {
   max-width: 70rem;
-  margin: 1rem auto;
+  margin: 0 auto;
   text-align: center;
-  margin-bottom: 3rem;
 }
 
-.contact form .input-box{
+.contact form .input-box {
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
+  gap: 1.5rem;
 }
-.contact form .input-box input,
-.contact form textarea{
+
+.contact form .input-box input {
+  /* fixed 49% ki jagah flex-basis — chhoti screen par khud full width le lega */
+  flex: 1 1 26rem;
+  min-width: 0;
+}
+
+.contact form input,
+.contact form textarea {
   width: 100%;
-  padding: 1.5rem; 
+  padding: 1.5rem;
   font-size: 1.6rem;
   color: var(--text-color);
   background: var(--snd-bf-color);
   border-radius: .8rem;
-  margin: .7rem 0 ; 
-}
-.contact form .input-box input{
-  width:49% ; 
-}
-.contact form textarea{
-  resize: none;
-}
-.contact form .btn{
-  margin-top: 2rem;
-  cursor: pointer;
+  margin-bottom: 1.5rem;
 }
 
+.contact form textarea { resize: vertical; }
 
-/* For responsive page */
+.contact form ::placeholder { color: rgba(255, 255, 255, .55); }
 
-/* =======================================
-   RESPONSIVE MEDIA QUERIES
-======================================= */
+/* number input ke ugly spinners hata diye */
+.contact form input[type="number"]::-webkit-outer-spin-button,
+.contact form input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 
-/* For Laptops / Small Desktops */
+.contact form .btn { margin-top: 1rem; }
+
+/* ==========================================================
+   RESPONSIVE — sirf ek hi set of media queries (pehle 3 duplicate set the)
+   ========================================================== */
+
+/* Laptops / small desktops */
 @media (max-width: 1200px) {
-  html {
-    font-size: 55%; /* 1rem = 5.5px, saari text thodi choti ho jayegi */
-  }
-  .knowladge-box, .knowladge-box2 {
-    width: calc(100% / 2 - 40px); /* Knowledge cards 2 per row */
-  }
+  html { font-size: 55%; }
+  .header, .header.sticky { padding-left: 5%; padding-right: 5%; }
+  section { padding: 12rem 5% 6rem; }
 }
 
-/* For Tablets */
+/* Tablets */
 @media (max-width: 991px) {
-  .header {
-    padding: 2rem 3%;
-  }
-  .about {
-    margin-left: 0;
-    justify-content: center;
-  }
-  .about-content {
-    margin-right: 0;
-    text-align: center;
-  }
-  section {
-    padding: 10rem 3% 2rem;
-  }
-  .services {
-      padding-bottom: 7rem;
-  }
-  .portfolio {
-    padding-bottom: 7rem;
-  }
+  .header, .header.sticky { padding-left: 3%; padding-right: 3%; }
+  section { padding: 11rem 3% 6rem; }
+  .navbar a { margin-left: 2.5rem; }
+  .about { gap: 4rem; }
 }
 
-/* For Large Mobile Phones / Small Tablets */
+/* Large phones / small tablets — yahan se hamburger menu chalu */
 @media (max-width: 768px) {
-  #menu-icon {
-    display: block; 
-  }
-  .about {
-    flex-direction: column;
-    margin-left: 0;
-    padding: 8rem 5%; 
-  }
-  .about-content {
-    margin-right: 0;
-    max-width: 100%;
-  }
- 
+  .bars { display: block; }
+
   .navbar {
     position: absolute;
     top: 100%;
@@ -645,204 +515,68 @@ span {
     width: 100%;
     padding: 1rem 3%;
     background: var(--bg-color);
-    border-top: .1rem solid rgba(0, 0, 0, .2);
-    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
+    border-top: .1rem solid rgba(255, 255, 255, .1);
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .3);
     display: none;
   }
-  
-  .navbar.active {
-    display: block;
-  }
+
+  .navbar.active { display: block; }
 
   .navbar a {
     display: block;
     font-size: 2rem;
-    margin: 3rem 0;
+    margin: 2.5rem 0;
   }
 
-  /* Home Section Alignment */
+  .navbar a::after { display: none; }
+
   .home {
+    min-height: auto;          /* 100vh ki wajah se mobile par khali space aata tha */
+    padding-top: 13rem;
+  }
+
+  .home-container {
     flex-direction: column;
-    padding-top: 12rem; 
-  }
-  .home-content h3 {
-    font-size: 2.6rem;
-  }
-  .home-content h1 {
-    font-size: 5rem;
-  }
-  .home-img img, .about-img img {
-    width: 70vw; 
-    margin-top: 4rem;
+    text-align: center;
   }
 
-  
-  .portfolio-container {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .knowladge-box, .knowladge-box2 {
-    width: 100%; 
-  }
+  .home-content { text-align: center; }
+  .home-content p { margin: 0 auto; }
+  .socialmedia { justify-content: center; }
+
+  .about { flex-direction: column; text-align: center; }
+  .about-content { text-align: center; }
+  .about-content .heading { text-align: center; }
+  .about-content p { text-align: left; }
+  .about-img { order: 2; margin-top: 2rem; }
+  .about-img img { max-width: 26rem; }
+
+  .project-box img { height: 28rem; }
+  .intership-container .intership-box { padding: 3rem 2.5rem; }
 }
 
-/* For Small Mobile Phones (Mobiles) */
-/* @media (max-width: 615px) {
-  
-  .portfolio-container {
-  grid-template-columns: 1fr;
-}
-/* with: */
-.project-container {
-  grid-template-columns: 1fr;
-  max-width: 100%;
-}
-/* } */
-
-/* For Very Small Screens */
-/* @media (max-width: 450px) {
-  html {
-    font-size: 50%;
-  }
-  .home-content h1 {
-    font-size: 4rem;
-  }
-  .contact form .input-box input {
-    width: 100%; /* full width instead of 49% side-by-side */
-  /* }  */
-/* }  */
-/* LAPTOP & DESKTOP KE LIYE MAIN CSS (Ise @media se bahar/upar rakhna hai) */
-.project-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Dono boxes ko ek row mein agal-bagal set karega */
-  align-items: center;
-  justify-content: center;
-  gap: 5rem;
-  max-width: 1050px; /* Pure container ki chaudaai (width) fix kar di, taaki boxes bohot bade na hon */
-  margin: 0 auto; /* Container ko center mein laane ke liye */
+/* Small phones */
+@media (max-width: 617px) {
+  section { padding: 10rem 5% 5rem; }
+  .project-container { grid-template-columns: 1fr; }
+  .intership-box p { text-align: left; }
 }
 
-.project-box img {
-  width: 100%;
-  height: 35rem; /* Image ko ek fix height de di taaki wo lamba na khinche */
-  object-fit: cover; /* Image ko box ke andar perfectly fit karne ke liye */
-  transition: .5s ease;
-  opacity: 0.7;
-}
-@media(max-width: 1200px){
-  html{
-    font-size: 55%;
-  }
-}
-@media(max-width: 991px){
-  .header{
-    padding: 2rem  3% ;
-  }
-  section{
-    padding: 10rem 3%;
-  }
-  .services{
-    padding: 7rem;
-  }
-  .portfolio{
-    padding-bottom: 7rem ;
-  }
-  .contact{
-    max-height: auto;
-  }
+/* Very small screens */
+@media (max-width: 450px) {
+  html { font-size: 50%; }
+  .logo { font-size: 2.4rem; }
+  .contact form .input-box input { flex: 1 1 100%; }
+  .knowladge-container { grid-template-columns: 1fr; }
+  .about-img img { max-width: 22rem; }
 }
 
-@media(max-width: 768px ){
-  #menu-icon{
-    display: block;
-  }
-  .navbar{
-    position: absolute;
-    top: 100%; 
-    left: 0; 
-    width: 100%;
-    padding: 1rem 3%;
-    background-color: var(--bg-color);
-    border-top: .1rem solid rgba(0, 0, 0, .2);
-    box-shadow: 0 .5rem 1rem rgba(0,0,0,.2);
-    display: none;
-  }
-  .navbar.active{
-    display: block;
-  }
-  .navbar a{
-    display: block;
-    font-size: 2rem;
-    margin: 3rem 0;
-  }
-  .home{
-    flex-direction: column;
-  }
-  .home-content h3{
-    font-size: 2.6rem;
-  }
-  .home-content h1{
-    font-size: 2.6rem;
-  }
-  .home-content{
-    order: 2;
-  }
-  .home-img img{
-    width: 70vw;
-    margin-top: 4rem;
-  }
-  .about-content .btn {
-    margin-bottom: 7rem !important; 
-    display: inline-block !important;
-  }
-
-  .about .home-bg {
-    margin-top: 4rem !important;
-    display: flex !important;
-    justify-content: center !important;
-  }
-  
-  .about .home-bg img {
-    width: 250px !important; /* Maine fixed size de diya hai taaki perfect gol/bada aaye */
-    height: 250px !important;
-    object-fit: cover !important;
-  }
-  .about{
-    flex-direction: column;
-  }
-  .about-img img{
-    width: 90vw;
-    margin-top: 8rem;
-  }
-  .services h2{
-    margin-bottom: 3rem ;
-  }
-  .project h2{
-    margin-bottom: 3rem;
-  }
-  .project-container{
-    grid-template-columns: 1fr ; 
-    gap: 3rem;
-  }
-}
-@media(max-width:617px){
-  .project-container{
-    grid-template-columns: 1fr;
-  }
-  .home-img img{
-    width: 80vw;
-    margin-top: 8rem;
-  }
-  .about-img img{
-    width: 100vw;
-    margin-top: 4rem;
-  }
-}
-@media(max-width:450px)
-{
-  html{
-    font-size: 50%;
-  }
-  .contact form .input-box input{
-    width: 100%;
+/* Motion kam pasand karne walon ke liye */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
   }
 }

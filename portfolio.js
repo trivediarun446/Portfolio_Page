@@ -1,89 +1,143 @@
-let menuIcon = document.querySelector("#menu-icon"); 
-let navbar = document.querySelector('.navbar'); 
+/* ==========================================================
+   Arun Trivedi — Portfolio scripts (fixed)
+   ========================================================== */
 
-menuIcon.onclick = () => {  /* Yahan -> ki jagah => aayega */
-    menuIcon.classList.toggle('fa-xmark'); 
-    navbar.classList.toggle('active'); 
-};
+document.addEventListener('DOMContentLoaded', function () {
 
-// Pehle sections aur navLinks ko select zaroor kar lena (agar upar nahi kiya hai toh)
-let sections = document.querySelectorAll('section');
-let navLinks = document.querySelectorAll('header nav a');
+  var menuBtn  = document.querySelector('.bars');
+  var menuIcon = document.querySelector('#menu-icon');
+  var navbar   = document.querySelector('.navbar');
+  var header   = document.querySelector('.header');
+  var sections = document.querySelectorAll('section');
+  var navLinks = document.querySelectorAll('header nav a');
 
-window.onscroll = () => {
-    sections.forEach(sec => {
-        let top = window.scrollY;
-        let offset = sec.offsetTop - 150;
-        let height = sec.offsetHeight;
-        let id = sec.getAttribute('id');
+  /* ---------- Mobile menu ----------
+     Click listener ab <a class="bars"> par hai (pehle sirf <i> par tha)
+     aur preventDefault() lagaya hai taaki page top par jump na kare. */
+  function closeMenu() {
+    if (!navbar) return;
+    navbar.classList.remove('active');
+    if (menuIcon) {
+      menuIcon.classList.remove('fa-xmark');
+      menuIcon.classList.add('fa-bars');
+    }
+  }
 
-        if(top >= offset && top < offset + height) {
-            // 1. Sabhi links se 'active' class hatane ke liye loop
-            navLinks.forEach(links => {
-                links.classList.remove('active');
-            });
-            
-            // 2. Jis section par hain, uske link par 'active' class lagana (Sahi syntax ke sath)
-            document.querySelector('header nav a[href*=' + id + ']').classList.add('active');
-        }
+  if (menuBtn && navbar) {
+    menuBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      var isOpen = navbar.classList.toggle('active');
+      if (menuIcon) {
+        menuIcon.classList.toggle('fa-bars', !isOpen);
+        menuIcon.classList.toggle('fa-xmark', isOpen);
+      }
     });
-let header = document.querySelector('header') ; 
-header.classList.toggle('sticky',window,scrollY > 100) ; 
+  }
 
-menuIcon.classList.remove('fa-xmark') ; 
-navbar.classList.remove('active') ; 
-};
+  /* Link par click karte hi menu band */
+  navLinks.forEach(function (link) {
+    link.addEventListener('click', closeMenu);
+  });
 
+  /* Desktop size par wapas aane par menu reset */
+  window.addEventListener('resize', function () {
+    if (window.innerWidth > 768) closeMenu();
+  });
 
-ScrollReveal({
-    distance: '80px',
-    duration: 2000,
-    delay: 200
-}); 
+  /* ---------- Active link + sticky header ---------- */
+  function onScroll() {
+    var top = window.scrollY;
 
-// Top se aane wale elements
-ScrollReveal().reveal('.home-content, .heading', { origin: 'top' });
+    sections.forEach(function (sec) {
+      var id = sec.getAttribute('id');
+      if (!id) return;
 
-// Bottom se aane wale elements (Yahan maine portfolio-box ko project-box kar diya hai)
-ScrollReveal().reveal('.home-img, .services-container, .project-box, .contact form', { origin: 'bottom' });
+      var offset = sec.offsetTop - 150;
+      var height = sec.offsetHeight;
 
-// Left se aane wale elements (about.img ko about-img kiya hai)
-ScrollReveal().reveal('.home-content h1, .about-img', { origin: 'left' });
+      if (top >= offset && top < offset + height) {
+        navLinks.forEach(function (link) { link.classList.remove('active'); });
 
-// Right se aane wale elements
-ScrollReveal().reveal('.home-content p, .about-content', { origin: 'right' });
+        /* Selector ko quote kiya — pehle unquoted tha aur null aane par crash ho sakta tha */
+        var current = document.querySelector('header nav a[href="#' + id + '"]');
+        if (current) current.classList.add('active');
+      }
+    });
 
+    /* Pehle yahan bug tha: toggle('sticky', window, scrollY > 100)
+       comma ki wajah se 'window' hamesha truthy pass ho raha tha. */
+    if (header) header.classList.toggle('sticky', window.scrollY > 100);
+  }
 
-// const typed = new Typed(Engineer']
-// }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
 
-// Contact Form Submission & Reset Logic
-let contactForm = document.getElementById('contact-form');
+  /* ---------- ScrollReveal (library load hui ho tabhi) ---------- */
+  if (typeof ScrollReveal !== 'undefined') {
+    var sr = ScrollReveal({
+      distance: '60px',
+      duration: 1600,
+      delay: 150,
+      reset: false
+    });
 
-if (contactForm) {
-    contactForm.addEventListener('submit', function(event) {
-        event.preventDefault(); // Page ko doosri website par jaane se rokta hai
-        
-        let formData = new FormData(this);
-        
-        fetch(this.action, {
-            method: this.method,
-            body: formData,
-            headers: {
-                'Accept': 'application/json'
-            }
-        }).then(response => {
-            if (response.ok) {
-                alert("Thank you! Your message has been sent successfully.");
-                contactForm.reset(); // YEH LINE SAARE BOXES KO RESET (KHALI) KAREGI
-            } else {
-                alert("Oops! There was a problem submitting your form.");
-            }
-        }).catch(error => {
-            alert("Oops! There was a network error. Please try again.");
+    sr.reveal('.home-content, .heading',                          { origin: 'top' });
+    sr.reveal('.knowladge-container, .project-box, .intership-box, .contact form',
+                                                                  { origin: 'bottom', interval: 100 });
+    sr.reveal('.about-img',                                       { origin: 'left' });
+    sr.reveal('.about-content',                                   { origin: 'right' });
+  }
+
+  /* ---------- Typed.js (optional) ----------
+     Agar library load na ho to span ka static text waise hi dikhega. */
+  if (typeof Typed !== 'undefined' && document.querySelector('.typing')) {
+    new Typed('.typing', {
+      strings: ['Engineering Enthusiast', 'AI & Data Science Learner', 'Full Stack Developer'],
+      typeSpeed: 70,
+      backSpeed: 40,
+      backDelay: 1200,
+      loop: true
+    });
+  }
+
+  /* ---------- Contact form (AJAX submit + reset) ---------- */
+  var contactForm = document.getElementById('contact-form');
+  var formStatus  = document.getElementById('form-status');
+
+  function setStatus(msg, isError) {
+    if (!formStatus) return;
+    formStatus.textContent = msg;
+    formStatus.style.color = isError ? '#ff8080' : 'var(--main-color)';
+  }
+
+  if (contactForm) {
+    contactForm.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      var submitBtn = contactForm.querySelector('input[type="submit"]');
+      if (submitBtn) submitBtn.disabled = true;
+      setStatus('Sending your message…', false);
+
+      fetch(contactForm.action, {
+        method: contactForm.method,
+        body: new FormData(contactForm),
+        headers: { 'Accept': 'application/json' }
+      })
+        .then(function (response) {
+          if (response.ok) {
+            setStatus('Message sent. Thanks for reaching out!', false);
+            contactForm.reset();
+          } else {
+            setStatus('Message could not be sent. Please try again.', true);
+          }
+        })
+        .catch(function () {
+          setStatus('Network error. Check your connection and try again.', true);
+        })
+        .finally(function () {
+          if (submitBtn) submitBtn.disabled = false;
         });
     });
-}
+  }
 
-
-
+});
